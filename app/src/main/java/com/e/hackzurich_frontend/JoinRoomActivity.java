@@ -60,15 +60,6 @@ public class JoinRoomActivity extends AppCompatActivity {
 
         editRoom = (EditText) findViewById(R.id.editRoomNumber);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(false);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        mAdapter = new RoomAdapter(rooms, this);
-        recyclerView.setAdapter(mAdapter);
-
 
         editRoom.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
