@@ -59,6 +59,7 @@
 
     <Button
         android:id="@+id/button4"
+        style="@style/Buttonspui"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
