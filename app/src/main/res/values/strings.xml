@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">hackzurich_frontend</string>
+    <string name="title_activity_join_room">JoinRoomActivity</string>
 </resources>
