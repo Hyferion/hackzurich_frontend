@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".JoinRoomActivity"
-            android:label="@string/title_activity_join_room"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".RoomActivity" />
+            android:name=".JoinRoomActivity"/>
+        <activity android:name=".Rooms.RoomActivity"/>
+        <activity android:name=".RoomCreation.RoomCreate" />
+        <activity android:name=".Rooms.RoomOverviewActivity" />
         <activity android:name=".NameActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.e.hackzurich_frontend.Rooms.RoomOverviewActivity;
+
 public class MainActivity extends AppCompatActivity {
     Button startBtn;
     private SharedPreferences myPreferences;
@@ -28,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             // TODO: Check if already logged in & Check if already has an user id
-
-
             SharedPreferences myPreferences = getSharedPreferences("mypreference",
                     Context.MODE_PRIVATE);
 
