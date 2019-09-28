@@ -31,8 +31,10 @@ import java.util.ArrayList;
 public class RoomActivity extends AppCompatActivity {
 
     private Button shareBtn;
+    private Button calcBtn;
 
     private String id;
+    private String name;
 
     private RequestQueue queue;
     private RecyclerView recyclerView;
@@ -48,12 +50,17 @@ public class RoomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_room);
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
+        name = intent.getStringExtra("name");
 
-        shareBtn = (Button) findViewById(R.id.button6);
+
+        shareBtn = (Button) findViewById(R.id.button8);
         shareBtn.setOnClickListener(startListener);
+        calcBtn = (Button) findViewById(R.id.button6);
+        calcBtn.setOnClickListener(startListener2);
 
         textView = findViewById(R.id.textView);
 
+        setTitle(name);
 
         queue = Volley.newRequestQueue(this);
         getMembers();
@@ -71,6 +78,18 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     private View.OnClickListener startListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, id);
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+        }
+    };
+    private View.OnClickListener startListener2 = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             calculate();
