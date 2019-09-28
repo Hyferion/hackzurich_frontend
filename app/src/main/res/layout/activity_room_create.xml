@@ -8,25 +8,20 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:text="What's the name of the room?"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
@@ -35,24 +30,20 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="24dp"
         android:text="What activity are you up for?"
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="395dp"
+        style="@style/spinner_style"
+        android:layout_width="260dp"
+        android:layout_marginBottom="24dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="224dp"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,12 +53,12 @@
         style="@style/Buttonspui"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.576" />
 
 </android.support.constraint.ConstraintLayout>
