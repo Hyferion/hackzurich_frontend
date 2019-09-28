@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.e.hackzurich_frontend.Rooms.RoomActivity;
 import com.android.volley.AuthFailureError;
@@ -36,10 +35,9 @@ import java.util.Map;
 public class NameActivity extends AppCompatActivity {
 
     Button nextBtn;
-    EditText editText;
+
     private SharedPreferences myPreferences;
     private EditText editText;
-    private TextView textView;
     private RequestQueue queue;
     private SharedPreferences.Editor editor;
 
@@ -59,7 +57,7 @@ public class NameActivity extends AppCompatActivity {
                 Context.MODE_PRIVATE);
 
         editText = (EditText) findViewById(R.id.editUsername);
-        textView = (TextView) findViewById(R.id.textView);
+
     }
   public void redirectToOverview() {
         Intent intent = new Intent(NameActivity.this, RoomOverviewActivity.class);
