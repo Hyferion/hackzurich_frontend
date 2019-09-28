@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +19,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class RoomCreate extends AppCompatActivity {
 
     private RequestQueue queue;
@@ -26,6 +30,14 @@ public class RoomCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_create);
 
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Eat");
+        arrayList.add("Drink");
+        arrayList.add("Cinema");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,                         android.R.layout.simple_spinner_item, arrayList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
 
         queue = Volley.newRequestQueue(this);
         createRoom();
