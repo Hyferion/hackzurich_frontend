@@ -78,7 +78,7 @@ public class RoomCreate extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8000/room", payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://34.65.124.86:8000/room", payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
             try {
                 redirectToRoom((String) response.get("identifier"));

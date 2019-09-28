@@ -17,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.e.hackzurich_frontend.MainActivity;
+import com.e.hackzurich_frontend.MapsActivity;
 import com.e.hackzurich_frontend.NameActivity;
 import com.e.hackzurich_frontend.R;
 import com.google.gson.Gson;
@@ -87,12 +88,15 @@ public class RoomActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8000/submitmeetup", payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://34.65.124.86:8000/submitmeetup", payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
             Gson gson = new Gson();
             Meetup meetup = gson.fromJson(response.toString(), Meetup.class);
 
-            //TODO Proceed to map
+            Intent intent = new Intent(RoomActivity.this, MapsActivity.class);
+            intent.putExtra("lat", meetup.getLat());
+            intent.putExtra("lng", meetup.getLng());
+            startActivity(intent);
         }, error -> {
             textView.setText("No Overlap found");
             Log.d("LOG", "createUser: " + error.toString());
@@ -106,7 +110,7 @@ public class RoomActivity extends AppCompatActivity {
     public void getMembers() {
         JSONObject payload = new JSONObject();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8000/room/" + id, payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://34.65.124.86:8000/room/" + id, payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
             Gson gson = new Gson();
             JSONArray jsonArray = response.optJSONArray("members");

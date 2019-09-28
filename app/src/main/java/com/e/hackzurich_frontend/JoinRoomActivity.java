@@ -88,7 +88,7 @@ public class JoinRoomActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8000/addmember/", payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://34.65.124.86:8000/addmember/", payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
         }, error -> {
             Log.d("LOG", "createUser: " + error.toString());

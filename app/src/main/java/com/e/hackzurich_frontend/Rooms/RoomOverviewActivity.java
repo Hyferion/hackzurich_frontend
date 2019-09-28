@@ -130,7 +130,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
     public void getRooms() {
         JSONObject payload = new JSONObject();
         int id = sharedPreferences.getInt("id", 0);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8000/room?user=" + Integer.toString(id), payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://34.65.124.86:8000/room?user=" + Integer.toString(id), payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
             Gson gson = new Gson();
 
@@ -158,7 +158,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
     public void getUserInstance() {
         JSONObject payload = new JSONObject();
         int id = sharedPreferences.getInt("id", 0);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8000/userinstance/" + Integer.toString(id), payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://34.65.124.86:8000/userinstance/" + Integer.toString(id), payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
 
         }, error -> {
@@ -178,7 +178,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8000/userinstance/", payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://34.65.124.86:8000/userinstance/", payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
         }, error -> {
             Log.d("LOG", "createUser: " + error.toString());
@@ -199,7 +199,7 @@ public class RoomOverviewActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, "http://10.0.2.2:8000/userinstance/" + Integer.toString(id), payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, "http://34.65.124.86:8000/userinstance/" + Integer.toString(id), payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
         }, error -> {
             Log.d("LOG", "createUser: " + error.toString());
