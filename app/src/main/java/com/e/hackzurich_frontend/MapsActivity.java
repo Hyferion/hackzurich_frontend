@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,29 +16,38 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-    Button routeBtn;
+    //Button routeBtn;
 
     private GoogleMap mMap;
     private Float lng;
     private Float lat;
+    private String name;
+    private String type;
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        textView = (TextView) findViewById(R.id.textView2);
 
         Intent intent = getIntent();
         lat = intent.getFloatExtra("lat",0);
         lng = intent.getFloatExtra("lng",0);
+        name = intent.getStringExtra("name");
+        type = intent.getStringExtra("type");
+
+        textView.setText(name+" "+type);
         //Log.d("", "onMapReady: " + lat.toString() + lng.toString());
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        routeBtn = (Button) findViewById(R.id.button7);
-        routeBtn.setOnClickListener(startListener);
+        //routeBtn = (Button) findViewById(R.id.button7);
+        //routeBtn.setOnClickListener(startListener);
     }
 
 
@@ -70,4 +80,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startActivity(intent);
         }
     };
+
 }

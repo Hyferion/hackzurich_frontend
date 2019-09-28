@@ -53,6 +53,8 @@ public class JoinRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_room);
 
+        setTitle("Join Meetup");
+
         queue = Volley.newRequestQueue(this);
 
         sharedPreferences = getSharedPreferences("united",

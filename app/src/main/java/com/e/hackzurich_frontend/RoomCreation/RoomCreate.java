@@ -40,6 +40,8 @@ public class RoomCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_create);
 
+        setTitle("Create Meetup");
+
         sharedPreferences = getSharedPreferences("united",
                 Context.MODE_PRIVATE);
 

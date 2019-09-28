@@ -115,6 +115,8 @@ public class RoomActivity extends AppCompatActivity {
             Intent intent = new Intent(RoomActivity.this, MapsActivity.class);
             intent.putExtra("lat", meetup.getLat());
             intent.putExtra("lng", meetup.getLng());
+            intent.putExtra("name", meetup.getName());
+            intent.putExtra("type", meetup.getType());
             startActivity(intent);
         }, error -> {
             textView.setText("No Overlap found");

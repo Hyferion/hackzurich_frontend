@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        this.getSupportActionBar().hide();
+
 
 
         startBtn = (Button) findViewById(R.id.button    );

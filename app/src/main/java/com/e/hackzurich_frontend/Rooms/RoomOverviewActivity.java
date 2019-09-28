@@ -62,6 +62,8 @@ public class RoomOverviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_overview);
 
+        setTitle("Unitedx");
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         queue = Volley.newRequestQueue(this);
