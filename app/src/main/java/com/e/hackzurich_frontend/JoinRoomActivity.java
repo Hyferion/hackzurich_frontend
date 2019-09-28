@@ -14,14 +14,14 @@ import android.widget.EditText;
 public class JoinRoomActivity extends AppCompatActivity {
     EditText editText;
 
-    final EditText editText = (EditText) findViewById(R.id.editUsername);
+    final EditText editRoom = (EditText) findViewById(R.id.editUsername);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        editText.setOnKeyListener(new View.OnKeyListener() {
+        editRoom.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // If the event is a key-down event on the "enter" button
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
