@@ -3,6 +3,9 @@ package com.e.hackzurich_frontend.Rooms;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
@@ -22,6 +25,9 @@ import com.e.hackzurich_frontend.MainActivity;
 import com.e.hackzurich_frontend.NameActivity;
 import com.e.hackzurich_frontend.R;
 import com.e.hackzurich_frontend.RoomCreation.RoomCreate;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -42,11 +48,16 @@ public class RoomOverviewActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private RequestQueue queue;
+    private FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_overview);
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+
 
         queue = Volley.newRequestQueue(this);
 
@@ -88,8 +99,21 @@ public class RoomOverviewActivity extends AppCompatActivity {
         mAdapter = new RoomAdapter(rooms, this);
         recyclerView.setAdapter(mAdapter);
 
+        fusedLocationProviderClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        getUserInstance(location);
+                        if (location != null) {
+                            // Logic to handle location object
+                        }
+                    }
+                });
+
 
     }
+
+
 
 
     public void checkIfNameIsSetAndRedirect() {
@@ -101,10 +125,10 @@ public class RoomOverviewActivity extends AppCompatActivity {
     }
 
 
-    public void getRooms(){
+    public void getRooms() {
         JSONObject payload = new JSONObject();
-        int id = sharedPreferences.getInt("id",0);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8000/room?user=" + Integer.toString(id) , payload, response -> {
+        int id = sharedPreferences.getInt("id", 0);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8000/room?user=" + Integer.toString(id), payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
             Gson gson = new Gson();
 
@@ -129,6 +153,60 @@ public class RoomOverviewActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
+    public void getUserInstance(Location location) {
+        JSONObject payload = new JSONObject();
+        int id = sharedPreferences.getInt("id", 0);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8000/userinstance/" + Integer.toString(id), payload, response -> {
+            Log.d("TAG", "onCreate: " + response.toString());
+            updatePosition(location);
+        }, error -> {
+            createUserInstance(location);
+            Log.d("LOG", "createUser: " + error.toString());
+        }) {
+        };
+        queue.add(jsonObjectRequest);
+    }
+
+    public void createUserInstance(Location location) {
+        JSONObject payload = new JSONObject();
+        try {
+            payload.put("userid", sharedPreferences.getInt("id", 0));
+            payload.put("lat", location.getLatitude());
+            payload.put("lng", location.getLongitude());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8000/userinstance/", payload, response -> {
+            Log.d("TAG", "onCreate: " + response.toString());
+        }, error -> {
+            Log.d("LOG", "createUser: " + error.toString());
+        }) {
+
+        };
+        queue.add(jsonObjectRequest);
+
+    }
+
+    public void updatePosition(Location location) {
+        int id = sharedPreferences.getInt("id", 0);
+        JSONObject payload = new JSONObject();
+        try {
+            payload.put("userid", sharedPreferences.getInt("id", 0));
+            payload.put("lat", location.getLatitude());
+            payload.put("lng", location.getLongitude());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, "http://10.0.2.2:8000/userinstance/" + Integer.toString(id), payload, response -> {
+            Log.d("TAG", "onCreate: " + response.toString());
+        }, error -> {
+            Log.d("LOG", "createUser: " + error.toString());
+        }) {
+
+        };
+        queue.add(jsonObjectRequest);
+
+    }
 
 
 }
