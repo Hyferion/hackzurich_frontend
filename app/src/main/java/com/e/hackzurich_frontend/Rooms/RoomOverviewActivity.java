@@ -57,8 +57,6 @@ public class RoomOverviewActivity extends AppCompatActivity {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-
-
         queue = Volley.newRequestQueue(this);
 
         sharedPreferences = getSharedPreferences("united",

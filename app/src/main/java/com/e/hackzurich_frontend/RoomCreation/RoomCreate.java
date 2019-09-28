@@ -70,11 +70,13 @@ public class RoomCreate extends AppCompatActivity {
     public void createRoom() {
         JSONObject payload = new JSONObject();
         int id = sharedPreferences.getInt("id", 0);
+        JSONArray array = new JSONArray();
+        array.put(id);
 
         try {
             payload.put("name", roomName.getText().toString());
             payload.put("owner", id);
-            payload.put("members", new JSONArray(id));
+            payload.put("members", array);
         } catch (JSONException e) {
             e.printStackTrace();
         }
