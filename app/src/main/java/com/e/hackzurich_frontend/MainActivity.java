@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.e.hackzurich_frontend.Rooms.RoomOverviewActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     Button startBtn;
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             // TODO: Check if already logged in & Check if already has an user id
-            Intent intent = new Intent(MainActivity.this, NameActivity.class);
+            Intent intent = new Intent(MainActivity.this, RoomOverviewActivity.class);
+            startActivity(intent);
         }
     };
 
