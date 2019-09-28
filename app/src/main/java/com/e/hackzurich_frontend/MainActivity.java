@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        startBtn = (Button) findViewById(R.id.button);
+        startBtn = (Button) findViewById(R.id.button    );
         startBtn.setOnClickListener(startListener);
     }
 
