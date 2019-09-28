@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
+        android:icon="@drawable/pen"
         android:id="@+id/navigation_create"
         android:title="Create room"/>
-
     <item
+        android:icon="@drawable/ic_people"
         android:id="@+id/navigation_rooms"
         android:title="Rooms"/>
-
     <item
+        android:icon="@drawable/ic_plus"
         android:id="@+id/navigation_join"
         android:title="Join room"/>
-
 </menu>

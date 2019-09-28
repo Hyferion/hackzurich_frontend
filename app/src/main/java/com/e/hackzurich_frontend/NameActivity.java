@@ -9,9 +9,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.e.hackzurich_frontend.Rooms.RoomActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +35,8 @@ import java.util.Map;
 
 public class NameActivity extends AppCompatActivity {
 
-
+    Button nextBtn;
+    EditText editText;
     private SharedPreferences myPreferences;
     private EditText editText;
     private TextView textView;
@@ -49,39 +52,31 @@ public class NameActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
 
+        nextBtn = (Button) findViewById(R.id.buttonUser);
+        nextBtn.setOnClickListener(startListener);
+      
         myPreferences = getSharedPreferences("united",
                 Context.MODE_PRIVATE);
 
         editText = (EditText) findViewById(R.id.editUsername);
         textView = (TextView) findViewById(R.id.textView);
-
-
-        editText.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                // If the event is a key-down event on the "enter" button
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    // Perform action on key press
-
-                    editor = myPreferences.edit();
-                    editor.putString("name", editText.getText().toString());
-                    editor.commit();
-
-                    createUser();
-
-
-                    return true;
-                }
-                return false;
-            }
-        });
     }
-
-    public void redirectToOverview() {
+  public void redirectToOverview() {
         Intent intent = new Intent(NameActivity.this, RoomOverviewActivity.class);
         startActivity(intent);
     }
+  
+    private View.OnClickListener startListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            editor = myPreferences.edit();
+            editor.putString("name", editText.getText().toString());
+            editor.commit();
 
+            createUser();
+
+        }
+    };
 
     public void createUser() {
         JSONObject payload = new JSONObject();
@@ -103,7 +98,6 @@ public class NameActivity extends AppCompatActivity {
             Log.d("LOG", "createUser: " + error.toString());
         }) {
         };
-
         queue.add(jsonObjectRequest);
     }
 }
