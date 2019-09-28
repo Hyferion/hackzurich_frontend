@@ -16,7 +16,7 @@ import com.e.hackzurich_frontend.Rooms.RoomOverviewActivity;
 
 public class MainActivity extends AppCompatActivity {
     Button startBtn;
-    private SharedPreferences myPreferences;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
     private View.OnClickListener startListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
-            // TODO: Check if already logged in & Check if already has an user id
-            SharedPreferences myPreferences = getSharedPreferences("mypreference",
-                    Context.MODE_PRIVATE);
-
-            //myPreferences.edit().clear().commit();
-
-
-            if(myPreferences.contains("Name")){
-                // start Room activity
-                Intent intent = new Intent(MainActivity.this, RoomOverviewActivity.class);
-                startActivity(intent);
-            }else{
-                // start Name activity
-                Intent intent = new Intent(MainActivity.this, NameActivity.class);
-                startActivity(intent);
-            }
+        public void onClick(View v){
+            Intent intent = new Intent(MainActivity.this, NameActivity.class);
+            startActivity(intent);
         }
     };
+
 
 
 
