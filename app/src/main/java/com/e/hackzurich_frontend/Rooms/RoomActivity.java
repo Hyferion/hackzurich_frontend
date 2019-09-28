@@ -28,16 +28,12 @@ public class RoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_room);
-        this.getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
 
-        setTitle(roomName);
 
         queue = Volley.newRequestQueue(this);
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-
-        Log.d("TAG", "onCreate: " + id.toString());
 
         calculate();
     }
