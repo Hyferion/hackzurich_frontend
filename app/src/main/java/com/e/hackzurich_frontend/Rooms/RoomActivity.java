@@ -38,6 +38,7 @@ public class RoomActivity extends AppCompatActivity {
 
 
 
+
         shareBtn = (Button) findViewById(R.id.button6);
         shareBtn.setOnClickListener(startListener);
 
@@ -45,8 +46,6 @@ public class RoomActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
-
-        Log.d("TAG", "onCreate: " + id.toString());
 
         calculate();
     }

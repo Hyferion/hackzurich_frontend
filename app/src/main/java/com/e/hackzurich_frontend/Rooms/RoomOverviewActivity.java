@@ -99,11 +99,13 @@ public class RoomOverviewActivity extends AppCompatActivity {
         mAdapter = new RoomAdapter(rooms, this);
         recyclerView.setAdapter(mAdapter);
 
+        getUserInstance();
+
         fusedLocationProviderClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        getUserInstance(location);
+                        updatePosition(location);
                         if (location != null) {
                             // Logic to handle location object
                         }
@@ -153,26 +155,26 @@ public class RoomOverviewActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    public void getUserInstance(Location location) {
+    public void getUserInstance() {
         JSONObject payload = new JSONObject();
         int id = sharedPreferences.getInt("id", 0);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.0.2.2:8000/userinstance/" + Integer.toString(id), payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
-            updatePosition(location);
+
         }, error -> {
-            createUserInstance(location);
+            createUserInstance();
             Log.d("LOG", "createUser: " + error.toString());
         }) {
         };
         queue.add(jsonObjectRequest);
     }
 
-    public void createUserInstance(Location location) {
+    public void createUserInstance() {
         JSONObject payload = new JSONObject();
         try {
             payload.put("userid", sharedPreferences.getInt("id", 0));
-            payload.put("lat", location.getLatitude());
-            payload.put("lng", location.getLongitude());
+            payload.put("lat", 0);
+            payload.put("lng", 0);
         } catch (JSONException e) {
             e.printStackTrace();
         }
