@@ -11,13 +11,24 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.e.hackzurich_frontend.Rooms.RoomOverviewActivity;
+
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NameActivity extends AppCompatActivity {
     public SharedPreferences myPreferences;
 
 
-    EditText editText;
+    private EditText editText;
+    private TextView textView;
+    private RequestQueue queue;
 
 
     @Override
@@ -25,13 +36,14 @@ public class NameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
 
-        final SharedPreferences myPreferences = getSharedPreferences("mypreference",
+        queue = Volley.newRequestQueue(this);
+
+
+        final SharedPreferences myPreferences = getSharedPreferences("united",
                 Context.MODE_PRIVATE);
 
-        final EditText editText = (EditText) findViewById(R.id.editUsername);
-
-        final TextView textView = (TextView) findViewById(R.id.textView);
-
+        editText = (EditText) findViewById(R.id.editUsername);
+        textView = (TextView) findViewById(R.id.textView);
 
 
         editText.setOnKeyListener(new View.OnKeyListener() {
@@ -42,23 +54,25 @@ public class NameActivity extends AppCompatActivity {
                     // Perform action on key press
 
                     SharedPreferences.Editor ed = myPreferences.edit();
-                    ed.putString("Name", editText.getText().toString());
+                    ed.putString("name", editText.getText().toString());
                     ed.commit();
 
-                    // send username, get user id
+                    // TODO: send username, get user id
 
-                    Intent intent = new Intent(NameActivity.this, RoomActivity.class);
-                    startActivity(intent);
 
+
+                    redirectToOverview();
 
                     return true;
                 }
                 return false;
             }
         });
+    }
 
 
-
-
+    public void redirectToOverview() {
+        Intent intent = new Intent(NameActivity.this, RoomOverviewActivity.class);
+        startActivity(intent);
     }
 }

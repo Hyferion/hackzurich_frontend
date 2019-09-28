@@ -11,15 +11,20 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
+import com.e.hackzurich_frontend.Rooms.RoomActivity;
+
 public class JoinRoomActivity extends AppCompatActivity {
     EditText editText;
 
-    final EditText editRoom = (EditText) findViewById(R.id.editUsername);
+    private EditText editRoom;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_join_room);
+
+        editRoom = (EditText) findViewById(R.id.editRoomNumber);
 
         editRoom.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -28,9 +33,11 @@ public class JoinRoomActivity extends AppCompatActivity {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
 
+                    //Todo: Join room request and wait for answer and ID
 
                     // Start room activity
                     Intent intent = new Intent(JoinRoomActivity.this, RoomActivity.class);
+                    intent.putExtra("id", editRoom.getText().toString());
                     startActivity(intent);
 
 

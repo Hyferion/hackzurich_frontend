@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.e.hackzurich_frontend.JoinRoomActivity;
 import com.e.hackzurich_frontend.MainActivity;
 import com.e.hackzurich_frontend.R;
 
@@ -39,7 +40,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, MainActivity.class);
+            Intent intent = new Intent(context, RoomActivity.class);
+            intent.putExtra("id", room.getIdentifier());
             context.startActivity(intent);
 
         }
