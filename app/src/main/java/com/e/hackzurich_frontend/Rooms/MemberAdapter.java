@@ -9,30 +9,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.e.hackzurich_frontend.JoinRoomActivity;
-import com.e.hackzurich_frontend.MainActivity;
 import com.e.hackzurich_frontend.R;
 
 import java.util.ArrayList;
 
-public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> {
+public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.MyViewHolder> {
 
 
-    private ArrayList<Room> mDataset;
+    private ArrayList<Member> mDataset;
     private Context mContext;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView title;
         private TextView owner;
-        private Room room;
+        private Member member;
         private Context context;
         private SharedPreferences sharedPreferences;
 
         public MyViewHolder(View itemView, Context context) {
             super(itemView);
             this.context = context;
-            sharedPreferences = context.getSharedPreferences("meetup", 0);
-            itemView.setOnClickListener(this);
+            sharedPreferences = context.getSharedPreferences("united", 0);
             title = (TextView) itemView.findViewById(R.id.title);
             owner = (TextView) itemView.findViewById(R.id.id);
 
@@ -40,22 +37,19 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, RoomActivity.class);
-            intent.putExtra("id", room.getIdentifier());
-            context.startActivity(intent);
 
         }
     }
 
 
-    public RoomAdapter(ArrayList<Room> myDataset, Context context) {
+    public MemberAdapter(ArrayList<Member> myDataset, Context context) {
         mDataset = myDataset;
         mContext = context;
     }
 
     @Override
-    public RoomAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                       int viewType) {
+    public MemberAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
+                                                         int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.room, null, false);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
@@ -66,9 +60,9 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.title.setText(mDataset.get(position).getName());
-        holder.owner.setText(mDataset.get(position).getIdentifier());
-        holder.room = mDataset.get(position);
+        String string = Integer.toString(mDataset.get(position).getId());
+        holder.title.setText(string);
+        holder.member = mDataset.get(position);
     }
 
     @Override
@@ -78,4 +72,3 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
 
 }
-
