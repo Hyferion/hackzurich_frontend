@@ -17,7 +17,7 @@
     <style name="Buttonspui" parent="android:Widget.Button">
         <item name="android:background">#E06221</item>
         <item name="android:minHeight">48dip</item>
-        <item name="android:minWidth">64dip</item>
+        <item name="android:minWidth">90dip</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textStyle">bold</item>
     </style>
