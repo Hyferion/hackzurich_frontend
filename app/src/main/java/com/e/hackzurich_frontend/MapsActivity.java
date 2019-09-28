@@ -18,11 +18,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Button routeBtn;
 
     private GoogleMap mMap;
+    private Float lng;
+    private Float lat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+
+        Intent intent = getIntent();
+        lat = intent.getFloatExtra("lat",0);
+        lng = intent.getFloatExtra("lng",0);
+        Log.d("", "onMapReady: " + lat.toString() + lng.toString());
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -46,10 +54,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        Log.d("", "onMapReady: " + lat.toString() + lng.toString());
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng location = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions().position(location).title("Your target"));
+        mMap.setMinZoomPreference(15);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 
     private View.OnClickListener startListener = new View.OnClickListener() {

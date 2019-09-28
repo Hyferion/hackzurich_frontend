@@ -83,7 +83,7 @@ public class NameActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://10.0.2.2:8000/user", payload, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://34.65.124.86:8000/user", payload, response -> {
             Log.d("TAG", "onCreate: " + response.toString());
             try {
                 editor.putInt("id", response.getInt("id"));
